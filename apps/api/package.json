@@ -4,7 +4,10 @@
   "description": "tRCP service that provides access to backend data",
   "main": "index.ts",
   "scripts": {
-    "dev": "ts-node index.ts"
+    "start-db": "docker-compose up -d",
+    "dev": "tsx watch index.ts",
+    "prisma-migrate": "yarn prisma migrate dev --name init",
+    "prisma-generate": "yarn prisma generate"
   },
   "license": "MIT",
   "private": true,
@@ -23,6 +26,7 @@
     "prisma": "^4.6.1",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.1",
+    "tsx": "^3.12.1",
     "typescript": "^4.9.3"
   }
 }
