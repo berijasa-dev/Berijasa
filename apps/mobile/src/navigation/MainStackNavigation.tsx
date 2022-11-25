@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
     createStackNavigator,
     StackNavigationProp,
 } from "@react-navigation/stack";
 import { RouteProp } from "@react-navigation/native";
-import { Home } from "../screens/Home";
+import { Home } from "~screens/Home";
 
 /**
  * Determines which params can be passed to which screens

@@ -1,3 +1,4 @@
+import 'expo-dev-client';
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { trpc } from "./trpc";
@@ -6,8 +7,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MainStackNavigation } from "./src/navigation/MainStackNavigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AvoidSoftInput } from "react-native-avoid-softinput";
 
 const queryClient = new QueryClient();
+AvoidSoftInput.setEnabled(true);
 
 function AppContent() {
     return (
