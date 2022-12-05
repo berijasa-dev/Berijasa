@@ -4,13 +4,15 @@ import {
     StackNavigationProp,
 } from "@react-navigation/stack";
 import { RouteProp } from "@react-navigation/native";
-import { Home } from "~screens/Home";
+import { UnderDevelopmentScreen } from "~src/screens/UnderDevelopmentScreen";
+import { HomeScreen } from "~src/screens/HomeScreen";
 
 /**
  * Determines which params can be passed to which screens
  */
 export type MainStackArguments = {
-    Home?: undefined;
+    UnderDevelopmentScreen?: undefined;
+    HomeScreen?: undefined;
 };
 
 /**
@@ -42,11 +44,16 @@ export const MainStackNavigation: FC = () => {
                 animationEnabled: true,
                 cardStyle: { backgroundColor: "white" },
             }}
-            initialRouteName="Home"
+            initialRouteName="HomeScreen"
         >
             <MainStack.Screen
-                name="Home"
-                component={Home}
+                name="UnderDevelopmentScreen"
+                component={UnderDevelopmentScreen}
+                options={screenOptions}
+            />
+            <MainStack.Screen
+                name="HomeScreen"
+                component={HomeScreen}
                 options={screenOptions}
             />
         </MainStack.Navigator>

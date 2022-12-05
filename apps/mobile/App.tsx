@@ -1,4 +1,4 @@
-import 'expo-dev-client';
+import "expo-dev-client";
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { trpc } from "./trpc";
@@ -8,9 +8,11 @@ import { MainStackNavigation } from "./src/navigation/MainStackNavigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AvoidSoftInput } from "react-native-avoid-softinput";
+import superjson from "superjson";
 
 const queryClient = new QueryClient();
 AvoidSoftInput.setEnabled(true);
+let token: string;
 
 function AppContent() {
     return (
@@ -27,15 +29,15 @@ export default function App() {
         trpc.createClient({
             links: [
                 httpBatchLink({
-                    url: "http://localhost:4000/trpc",
-                    // optional
-                    // headers() {
-                    //     return {
-                    //         authorization: getAuthCookie(),
-                    //     };
-                    // },
+                    url: "http://localhost:4000/api/trpc",
+                    headers: () => {
+                        return {
+                            Authorization: token,
+                        };
+                    },
                 }),
             ],
+            transformer: superjson,
         })
     );
     return (

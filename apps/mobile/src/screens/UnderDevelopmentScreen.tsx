@@ -14,8 +14,14 @@ import { FocusAwareStatusBar } from "../components/FocusAwareStatusBar";
 import { sfont, sh, sw } from "../styles/style-helpers";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import {
+    UnderDevelopmentDownImage,
+    UnderDevelopmentUpImage,
+} from "~assets/patterns";
 
-export const Home: MainStackScreen<"Home"> = () => {
+export const UnderDevelopmentScreen: MainStackScreen<
+    "UnderDevelopmentScreen"
+> = () => {
     return (
         <>
             <FocusAwareStatusBar style="dark" backgroundColor={"white"} />
@@ -37,7 +43,7 @@ export const Home: MainStackScreen<"Home"> = () => {
                             BERIJASA.COM
                         </Text>
                         <Image
-                            source={require("../../assets/patterns/home-up.png")}
+                            source={UnderDevelopmentUpImage}
                             style={{
                                 marginLeft: "auto",
                                 height: sh(230),
@@ -142,7 +148,7 @@ export const Home: MainStackScreen<"Home"> = () => {
                         />
                     </View>
                     <Image
-                        source={require("../../assets/patterns/home-down.png")}
+                        source={UnderDevelopmentDownImage}
                         style={{ marginTop: 40, height: sh(210) }}
                         resizeMode="contain"
                     />

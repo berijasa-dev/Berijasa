@@ -22,7 +22,7 @@ module.exports = function (api) {
                     alias: {
                         "~assets": "./assets",
                         "~src": "./src",
-                        '~screens': './src/screens',
+                        "~screens": "./src/screens",
                     },
                 },
             ],
