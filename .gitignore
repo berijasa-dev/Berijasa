@@ -25,6 +25,8 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+apps/mobile/ios/
+apps/mobile/android/
 
 # misc
 .DS_Store
