@@ -9,6 +9,17 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AvoidSoftInput } from "react-native-avoid-softinput";
 import superjson from "superjson";
+import Constants from "expo-constants";
+const { manifest } = Constants;
+
+const serverUrlFromExpoConstants = manifest?.debuggerHost
+    ?.split(`:`)
+    ?.shift()
+    ?.concat(`:4000`);
+
+const serverUrl = serverUrlFromExpoConstants
+    ? serverUrlFromExpoConstants
+    : `localhost:4000`;
 
 const queryClient = new QueryClient();
 AvoidSoftInput.setEnabled(true);
@@ -29,7 +40,9 @@ export default function App() {
         trpc.createClient({
             links: [
                 httpBatchLink({
-                    url: "http://localhost:4000/api/trpc",
+                    // url: "http://localhost:4000/api/trpc",
+                    url: `http://${serverUrl}/api/trpc`,
+
                     headers: () => {
                         return {
                             Authorization: token,

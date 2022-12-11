@@ -73,6 +73,10 @@ const appRouter = t.router({
             });
             return user;
         }),
+    getUsers: t.procedure.query(async ({ input }) => {
+        const users = await prisma.user.findMany();
+        return users;
+    }),
 });
 
 export type AppRouter = typeof appRouter;
