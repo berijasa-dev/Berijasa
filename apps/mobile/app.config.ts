@@ -6,6 +6,7 @@ module.exports = () => {
         owner: "berijasa-dev",
         name: IS_DEV ? "Berijasa (Dev)" : "Berijasa",
         slug: "berijasa",
+        scheme: "berijasamobile",
         version: "1.0.0",
         orientation: "portrait",
         icon: "./assets/icon.png",
