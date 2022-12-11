@@ -37,6 +37,7 @@ module.exports = () => {
                     },
                 },
             ],
+            "expo-community-flipper",
         ],
         ios: {
             bundleIdentifier: IS_DEV

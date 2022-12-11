@@ -39,6 +39,8 @@ export const HomeScreen: MainStackScreen<"HomeScreen"> = () => {
 
     const test = trpc.getUsers.useQuery();
     console.log(test.data);
+    const test2 = trpc.getUser.useQuery({ name: "Ziad" });
+    console.log(test2.data);
     return (
         <>
             <FocusAwareStatusBar style="dark" backgroundColor={"white"} />
