@@ -3,6 +3,7 @@ const IS_DEV = process.env.APP_VARIANT === "development";
 
 module.exports = () => {
     return {
+        owner: "berijasa-dev",
         name: IS_DEV ? "Berijasa (Dev)" : "Berijasa",
         slug: "berijasa",
         version: "1.0.0",
