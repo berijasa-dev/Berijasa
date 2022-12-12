@@ -7,8 +7,9 @@ import {
     TouchableOpacity,
     Platform,
     Button,
+    Alert,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import type { MainStackScreen } from "../navigation/MainStackNavigation";
 import { FocusAwareStatusBar } from "../components/FocusAwareStatusBar";
@@ -18,29 +19,39 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { HomeTopLeftImage, HomeTopRightImage } from "~assets/patterns";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
-import { trpc } from "trpc";
+import { RouterOutput, trpc } from "trpc";
 
 export const HomeScreen: MainStackScreen<"HomeScreen"> = () => {
-    // const [request, response, promptAsync] = Google.useAuthRequest({
-    //     iosClientId:
-    //         "285791189129-q0hu15n0n53ulgc7kn75le3dlsm9lful.apps.googleusercontent.com",
-    //     androidClientId:
-    //         "285791189129-v3kgpsj1s1ooajld0uufh55vh67i81r5.apps.googleusercontent.com",
-    // });
+    const [request, response, promptAsync] = Google.useAuthRequest({
+        iosClientId:
+            "285791189129-q0hu15n0n53ulgc7kn75le3dlsm9lful.apps.googleusercontent.com",
+        androidClientId:
+            "285791189129-v3kgpsj1s1ooajld0uufh55vh67i81r5.apps.googleusercontent.com",
+    });
 
-    // React.useEffect(() => {
-    //     console.log(request);
-    //     console.log(response);
-    //     if (response?.type === "success") {
-    //         const { authentication } = response;
-    //         console.log("success");
-    //     }
-    // }, [request, response]);
+    const [expressResponse, setExpressResponse] =
+        useState<RouterOutput["auth"]["loginWithGoogle"]>();
 
-    const test = trpc.getUsers.useQuery();
-    console.log(test.data);
-    const test2 = trpc.getUser.useQuery({ name: "Ziad" });
-    console.log(test2.data);
+    const { mutate: loginWithGoogle } = trpc.auth.loginWithGoogle.useMutation();
+
+    useEffect(() => {
+        if (response?.type === "success" && response.authentication?.idToken) {
+            loginWithGoogle(
+                {
+                    idToken: response.authentication?.idToken,
+                },
+                {
+                    onSuccess: (data) => {
+                        setExpressResponse(data);
+                    },
+                    onError: (err) => {
+                        Alert.alert(err.message);
+                    },
+                }
+            );
+        }
+    }, [loginWithGoogle, response]);
+
     return (
         <>
             <FocusAwareStatusBar style="dark" backgroundColor={"white"} />
@@ -126,13 +137,26 @@ export const HomeScreen: MainStackScreen<"HomeScreen"> = () => {
                                 opportunity to be self-empoyed? No matter what
                                 you need, Berijasa has got you covered!
                             </Text>
-                            {/* <Button
+                            <Button
                                 disabled={!request}
-                                title="Login"
+                                title="login"
                                 onPress={() => {
                                     void promptAsync();
                                 }}
-                            /> */}
+                            />
+
+                            {!!expressResponse && (
+                                <Text>{expressResponse.email}</Text>
+                            )}
+                            {!!expressResponse && (
+                                <Text>{expressResponse.name}</Text>
+                            )}
+                            {!!expressResponse && expressResponse.image && (
+                                <Image
+                                    style={{ height: 100, width: 100 }}
+                                    source={{ uri: expressResponse.image }}
+                                />
+                            )}
                             <TouchableOpacity
                                 style={{
                                     backgroundColor: "#174953",
