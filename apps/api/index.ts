@@ -5,6 +5,7 @@ import { z } from "zod";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import superjson from "superjson";
+import { renderTrpcPanel } from "trpc-panel";
 
 const prisma = new PrismaClient();
 
@@ -92,6 +93,15 @@ app.use(
         createContext,
     })
 );
+
+app.use("/api/panel", (_, res) => {
+    return res.send(
+        renderTrpcPanel(appRouter, {
+            url: "http://localhost:4000/api/trpc",
+            transformer: "superjson",
+        })
+    );
+});
 
 app.listen(4000, () =>
     console.log("REST API server ready at: http://localhost:4000")
