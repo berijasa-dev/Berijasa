@@ -6,14 +6,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
   id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String?
-  image    String?
-  googleId String? @unique
+  email    String  @unique @db.VarChar(255)
+  name     String? @db.VarChar(255)
+  image    String? @db.VarChar(255)
+  googleId String? @unique @db.VarChar(255)
 }

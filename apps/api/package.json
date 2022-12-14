@@ -4,9 +4,9 @@
   "description": "tRCP service that provides access to backend data",
   "main": "index.ts",
   "scripts": {
-    "start-db": "docker-compose up -d",
+    "start-db-local": "pscale connect berijasa dev --port 3309 --org berijasa-dev",
     "dev": "tsx watch index.ts",
-    "prisma-migrate": "yarn prisma migrate dev",
+    "prisma-push": "yarn prisma db push",
     "prisma-generate": "yarn prisma generate",
     "prisma-studio": "yarn prisma studio --port 7777"
   },
