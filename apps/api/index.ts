@@ -22,7 +22,8 @@ app.use(
 app.use("/api/panel", (_, res) => {
     return res.send(
         renderTrpcPanel(appRouter, {
-            url: "http://localhost:4000/api/trpc",
+            // url: "http://localhost:4000/api/trpc",
+            url: "https://berijasa-production.up.railway.app/api/trpc",
             transformer: "superjson",
         })
     );
