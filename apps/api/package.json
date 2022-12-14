@@ -4,6 +4,8 @@
   "description": "tRCP service that provides access to backend data",
   "main": "index.ts",
   "scripts": {
+    "start": "tsx index.ts",
+    "prebuild": "rimraf dist && tsc --build",
     "start-db-local": "pscale connect berijasa dev --port 3309 --org berijasa-dev",
     "dev": "tsx watch index.ts",
     "prisma-push": "yarn prisma db push",
