@@ -34,6 +34,11 @@ export const HomeScreen: MainStackScreen<"HomeScreen"> = () => {
 
     const { mutate: loginWithGoogle } = trpc.auth.loginWithGoogle.useMutation();
 
+    const k = trpc.user.getUsers.useQuery();
+    console.log(k.data);
+    const k2 = trpc.user.getUser.useQuery({ name: "Roudain Sarhan" });
+    console.log(k2.data);
+
     useEffect(() => {
         if (response?.type === "success" && response.authentication?.idToken) {
             loginWithGoogle(
