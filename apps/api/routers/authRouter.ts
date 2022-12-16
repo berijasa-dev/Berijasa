@@ -2,15 +2,14 @@ import { z } from "zod";
 import { prisma } from "../prisma-client";
 import { protectedProcedure, t } from "../trpc";
 import { OAuth2Client } from "google-auth-library";
-import * as dotenv from "dotenv";
 import { TRPCError } from "@trpc/server";
-dotenv.config();
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-const IOS_Google_Client_ID =
-    "285791189129-q0hu15n0n53ulgc7kn75le3dlsm9lful.apps.googleusercontent.com";
-const Android_Google_Client_ID =
-    "285791189129-v3kgpsj1s1ooajld0uufh55vh67i81r5.apps.googleusercontent.com";
+const GOOGLE_AUTH_CLIENT_ID = process.env.GOOGLE_AUTH_CLIENT_ID!;
+const IOS_GOOGLE_AUTH_CLIENT_ID = process.env.IOS_GOOGLE_AUTH_CLIENT_ID!;
+const ANDROID_GOOGLE_AUTH_CLIENT_ID =
+    process.env.ANDROID_GOOGLE_AUTH_CLIENT_ID!;
+
+const client = new OAuth2Client(GOOGLE_AUTH_CLIENT_ID);
 
 export const authRouter = t.router({
     loginWithGoogle: t.procedure
@@ -23,7 +22,10 @@ export const authRouter = t.router({
             async function verifyIdTokenWithGoogle() {
                 const ticket = await client.verifyIdToken({
                     idToken: input.idToken,
-                    audience: [IOS_Google_Client_ID, Android_Google_Client_ID],
+                    audience: [
+                        IOS_GOOGLE_AUTH_CLIENT_ID,
+                        ANDROID_GOOGLE_AUTH_CLIENT_ID,
+                    ],
                 });
                 const payload = ticket.getPayload();
                 return payload;
