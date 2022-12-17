@@ -139,7 +139,7 @@ export const HomeScreen: MainStackScreen<"HomeScreen"> = () => {
                             >
                                 Do you need expert help for completing your
                                 projects? Or are you looking for the perfect
-                                opportunity to be self-empoyed? No matter what
+                                opportunity to be self-employed? No matter what
                                 you need, Berijasa has got you covered!
                             </Text>
                             <Button
