@@ -10,7 +10,8 @@
     "dev": "tsx watch index.ts",
     "prisma-push": "yarn prisma db push",
     "prisma-generate": "yarn prisma generate",
-    "prisma-studio": "yarn prisma studio --port 7777"
+    "prisma-studio": "yarn prisma studio --port 7777",
+    "postinstall": "prisma generate"
   },
   "license": "MIT",
   "private": true,
