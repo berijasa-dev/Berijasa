@@ -3,9 +3,9 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import { renderTrpcPanel } from "trpc-panel";
-import { appRouter } from "./routers/appRouter";
+import { appRouter } from "./src/routers/appRouter";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { createContext } from "./trpc";
+import { createContext } from "./src/trpc";
 
 const PORT = process.env.PORT!;
 const ENVIRONMENT = process.env.ENVIRONMENT!;
