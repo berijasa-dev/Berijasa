@@ -38,5 +38,5 @@ app.use("/api/panel", (_, res) => {
 });
 
 app.listen(Number(PORT), () =>
-    console.log(`REST TRPC API server ready at -> ${SERVER_URL}`)
+    console.log(`REST TRPC API server ready at: ${SERVER_URL}`)
 );
