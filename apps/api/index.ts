@@ -5,7 +5,7 @@ import cors from "cors";
 import { renderTrpcPanel } from "trpc-panel";
 import { appRouter } from "./src/routers/appRouter";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { createContext } from "./src/trpc";
+import { createContext } from "./src/lib/trpc";
 
 const PORT = process.env.PORT!;
 const ENVIRONMENT = process.env.ENVIRONMENT!;

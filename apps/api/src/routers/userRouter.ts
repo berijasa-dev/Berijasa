@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { prisma } from "../prisma-client";
-import { protectedProcedure, t } from "../trpc";
+import { prisma } from "../lib/prisma";
+import { protectedProcedure, t } from "../lib/trpc";
 
 export const userRouter = t.router({
     createUser: protectedProcedure

@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { prisma } from "../prisma-client";
-import { protectedProcedure, t } from "../trpc";
+import { protectedProcedure, t } from "../lib/trpc";
 import { OAuth2Client } from "google-auth-library";
 import { TRPCError } from "@trpc/server";
+import { prisma } from "../lib/prisma";
 
 const GOOGLE_AUTH_CLIENT_ID = process.env.GOOGLE_AUTH_CLIENT_ID!;
 const IOS_GOOGLE_AUTH_CLIENT_ID = process.env.IOS_GOOGLE_AUTH_CLIENT_ID!;

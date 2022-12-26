@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { t } from "../lib/trpc";
 import { authRouter } from "./authRouter";
 import { userRouter } from "./userRouter";
 
